@@ -1,7 +1,12 @@
 const mongoose=require("mongoose");
 const ProjectSchema = new mongoose.Schema({
   projectname: String,
-  projectimage: [String], // <-- array of filenames
+  projectimage: [
+    {
+      data: Buffer,
+      contentType: String
+    }
+  ],
   projectsubtitle: String,
   toolsuse: String,
   gradientcolour: String,
