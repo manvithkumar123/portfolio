@@ -18,8 +18,11 @@ app.use("/api",CertificateRoute);
 app.use("/api",ProjectRoute);
 app.use("/api",contactroute);
 
+app.get("/", (req, res) => {
+  res.send("API is working. Try /api/skills or other routes.");
+});
 
-const PORT = 5050;
+const PORT = process.env.PORT || 5050;
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);
 });
