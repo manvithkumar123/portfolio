@@ -1,0 +1,8 @@
+#scroll{
+    height: 100vh !important;
+}
+@media screen and (max-width:720px) {
+    #scroll{
+        height: 70vh !important;
+    }
+}

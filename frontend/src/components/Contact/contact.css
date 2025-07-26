@@ -1,0 +1,44 @@
+.input_container input{
+    height: 50px;
+    width: 300px;
+    background-color: #d9d9d9;
+    border: none;
+    padding: 10px;
+    border-bottom: 1px solid white;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+input,textarea{
+    outline: none;
+}
+#message{
+    padding: 10px;
+    border-radius: 10px;
+    resize: none;
+    background-color: #d9d9d9;
+}
+#message::placeholder{
+    position: fixed;
+    top: 10px;
+}
+@media screen and (max-width:1024px) {
+    .contact_page{
+        flex-direction: column;
+        padding: 0 !important;
+    }
+    .contact_section{
+        margin-left: 0 !important;
+        width: 85vw !important;
+        margin-top: 50px;
+    }
+    input{
+        width: 250px !important;
+    }
+    textarea{
+        width: 250px !important;
+    }
+    .mainpage{
+        padding-bottom: 50px;
+        height: max-content !important;
+    }
+}

@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+
+.button_container button{
+    width: 150px;
+    height: 30px;
+    margin-top: 10px;
+    justify-self: center;
+    align-self: center;
+    background-color: transparent;
+    border: none;
+    color: #a0a8af;
+    border-radius: 10px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+}
+#logout:hover{
+    background-color: rgb(106, 47, 47) !important;
+    cursor: pointer;
+}
+.container {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    grid-template-rows: 100px 1fr 100px;
+    gap: 10px 10px;
+  }
+  .item{
+    border-radius: 10px;
+  }
+  
+  .item:nth-child(1) {
+    grid-column: 1 / 3;
+    height: 100px;
+  }
+  
+  .item:nth-child(3) {
+    grid-column: 1 / 3;
+}
+
+.item:nth-child(4) {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+
+  input{
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid white;
+    margin-top: 10px;
+    padding-left: 10px;
+    color: white;
+    outline: white !important;
+  }
+
+  textarea{
+    background-color: transparent;
+    border-bottom: 1px dotted white;
+    margin-top: 10px;
+    padding-left: 10px;
+    color: white;
+    outline: white !important;
+  }
+#addskill button{
+    background-color: #a0a8af;
+    border: 0;
+    box-shadow: 0 0 5px whitesmoke;
+}
+#EditSection input{
+    padding-left:10px ;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid white;
+    margin-top: 10px;
+    padding-left: 10px;
+    color: white;
+    outline: white !important;
+}
+#EditSection textarea{
+    padding:10px ;
+    background-color: transparent;
+    border-bottom: 1px dotted white;
+    margin-top: 10px;
+    padding-left: 10px;
+    color: white;
+    outline: white !important;
+}
+#EditSection button{
+    background-color: #a0a8af;
+    border: 0;
+    box-shadow: 0 0 5px whitesmoke;
+}
+#delete button{
+    background-color: #a0a8af;
+    border: 0;
+    box-shadow: 0 0 5px whitesmoke;
+}
+#delete input{
+    padding-left:10px ;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid white;
+    margin-top: 10px;
+    padding-left: 10px;
+    color: white;
+    outline: white !important;
+}
+#cerficatecoloum button{
+  background-color: #a0a8af;
+  border: 0;
+  box-shadow: 0 0 5px whitesmoke; 
+}
+input{
+  margin-top: 5px;
+}
