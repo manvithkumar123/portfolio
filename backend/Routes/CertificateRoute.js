@@ -28,7 +28,7 @@ router.get("/certificates", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-router.post("/Dashboard/certificate/delete", async (req, res) => {
+router.post("/Dashboard/certificate/delete", async (req,  res) => {
   const { certificateid } = req.body;
 
   if (!certificateid || certificateid.trim() === "") {
