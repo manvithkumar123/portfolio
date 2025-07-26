@@ -1,7 +1,6 @@
 require('dotenv').config(); // ← Add this line
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URL);
 
 const skillSchema = new mongoose.Schema({
     skillname: String,
