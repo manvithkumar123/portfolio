@@ -40,20 +40,6 @@ const Project = () => {
   return (
     <div style={{height:"max-content",minHeight:"100vh",width:"100vw",backgroundColor:"black",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
       <h1>Projects</h1>
-      {/* TEMPORARY fallback rendering for debugging */}
-      {items.length > 0 ? (
-        items.map((item, index) => (
-          <div key={index} style={{ color: 'white', padding: '10px' }}>
-            <img src={item.image} alt={item.title} style={{ width: '200px' }} />
-            <h3>{item.title}</h3>
-            <p>{item.subtitle}</p>
-            <p>{item.handle}</p>
-            <p>{item.url}</p>
-          </div>
-        ))
-      ) : (
-        <p style={{ color: 'white' }}>No projects found.</p>
-      )}
       <div style={{ height: 'max-content', width:"",position: 'relative' }}>
         <ChromaGrid 
           items={items}

@@ -3,6 +3,8 @@ import axios from 'axios';
 import AnimatedList from './animations/Animationlist';
 import './skills.css'
 
+const BASE_URL = "https://portfolio-op45.onrender.com";
+
 const Skilldetail = () => {
   const [items, setItems] = useState([]);
   const [description, setdescription] = useState("");
@@ -10,7 +12,7 @@ const Skilldetail = () => {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/skills")
+    axios.get(`${BASE_URL}/api/skills`)
       .then(res => {
         if (res.data && Array.isArray(res.data)) {
           setItems(res.data.map(skill => skill.skillname));

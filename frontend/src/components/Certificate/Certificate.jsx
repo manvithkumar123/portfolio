@@ -3,6 +3,7 @@ import "./certificate.css"
 import TiltedCard from './Animation/CircularGallery'
 import axios from 'axios';
 
+const BASE_URL = "https://portfolio-op45.onrender.com";
 const Certificate = () => {
   const [items,setitems]= useState("")
    const [certificates,setcertificates]= useState([])
@@ -14,7 +15,7 @@ const Certificate = () => {
     setCards((prev) => [...prev, newCard]);
   };
   useEffect(() => {
-    axios.get("/api/certificates")
+    axios.get(`${BASE_URL}/api/certificates`)
       .then(res => {
         if (res.data && Array.isArray(res.data)) {
           setitems(res.data.map(skill => skill.skillname));
@@ -31,7 +32,7 @@ const Certificate = () => {
         card.imageurl.map((img, i) => (
           <TiltedCard
             key={`${index}-${i}`}
-            imageSrc={`http://localhost:5050/Images/Certificates/${img}`}
+            imageSrc={`${BASE_URL}/Images/Certificates/${img}`}
             captionText={card.hovertext[i] || ""}
             containerHeight="300px"
             containerWidth="300px"
@@ -48,7 +49,7 @@ const Certificate = () => {
                 <p className="tilted-card-demo-text" style={{ marginTop: "20px", marginLeft: "10px" }}>
                   {card.captiontext}
                 </p>
-                <a href={`http://localhost:5050/Images/Certificates/${img}`} download target="_blank" rel="noopener noreferrer">
+                <a href={`/Images/Certificates/${img}`} download target="_blank" rel="noopener noreferrer">
                   <button style={{ marginTop: "10px", marginLeft: "10px", padding: "5px 10px", cursor: "pointer",position:"absolute",top:"250px" ,height:'30px',width:"30px",display:"flex",justifyContent:"center",alignItems:"center",backgroundColor:"transparent",border:"none"}}>
                     <i className="fa-solid fa-eye"></i>
                   </button>
