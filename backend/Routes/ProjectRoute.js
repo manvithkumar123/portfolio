@@ -31,7 +31,10 @@ router.post("/Dashboard/project", upload.array("projectimage", 10), async (req, 
       return res.status(400).send("No images uploaded. Make sure the field name is 'projectimage'.");
     }
 
-    const images = req.files.map(file => file.filename);
+    const images = req.files.map(file => ({
+        data: fs.readFileSync(path.join(__dirname, '..', 'public', 'Images', 'Projects', file.filename)),
+        contentType: file.mimetype
+    }));
 
     let newproject = new projectmodel({
         projectname,

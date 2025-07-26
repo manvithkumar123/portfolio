@@ -4,16 +4,7 @@ const certificatemodel = require("../DBmodules/Certificates")
 const multer = require('multer');
 const upload = require('../utils/multer');
 const { route } = require('./ProjectRoute');
-
-// Simple authentication middleware
-function isAuthenticated(req, res, next) {
-  if (req.session && req.session.user) {
-    next();
-  } else {
-    res.status(401).json({ success: false, message: "Unauthorized access" });
-  }
-}
-router.post("/Dashboard/certificate", isAuthenticated, upload.array("imageurl", 5), async (req, res) => {
+router.post("/Dashboard/certificate", upload.array("imageurl", 5), async (req, res) => {
   let { captiontext, hovertext } = req.body;
   const imageFilenames = req.files.map(file => file.filename);
   const hoverTextArray = Array.isArray(hovertext) ? hovertext : [hovertext];
@@ -32,7 +23,7 @@ router.get("/certificates",async(req,res)=>{
     const certificates = await certificatemodel.find();
     res.send(certificates)
 })
-router.post("/Dashboard/certificate/delete", isAuthenticated, async (req, res) => {
+router.post("/Dashboard/certificate/delete", async (req, res) => {
   const { certificateid } = req.body;
 
   if (!certificateid || certificateid.trim() === "") {
@@ -51,7 +42,7 @@ router.post("/Dashboard/certificate/delete", isAuthenticated, async (req, res) =
     res.status(500).json({ success: false, message: "Server error" });
   }
 });
-router.post("/Dashboard/certificate/edit", isAuthenticated, upload.array("imageurl", 5), async (req, res) => {
+router.post("/Dashboard/certificate/edit", upload.array("imageurl", 5), async (req, res) => {
   const { certificateid, captiontext, hovertext } = req.body;
   const updateFields = {};
   if (captiontext) updateFields.captiontext = captiontext;
@@ -71,12 +62,13 @@ router.post("/Dashboard/certificate/edit", isAuthenticated, upload.array("imageu
   }
 });
 
-router.post("/Dashboard/certificate/delete/all", isAuthenticated, async (req, res) => {
-  try {
-    await certificatemodel.deleteMany({});
-    res.send("deleted");
-  } catch (err) {
-    res.status(404).send(err, "cannot delete");
-  }
+router.post("/Dashboard/certificate/delete/all",async(req,res)=>{
+        try{
+            await certificatemodel.deleteMany({});
+            res.send("deleted")
+        }catch(err){
+            res.status(404).send(err,"cannot delete")
+        }
+
 })
 module.exports = router;

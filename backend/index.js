@@ -2,15 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const app= express();
-
-const session = require("express-session");
-
-app.use(session({
-  secret: "MANI", // use a strong secret in production
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: false } // set secure: true only if using HTTPS
-}));
 const SkillRoute=require("./Routes/SkillRoute");
 const CertificateRoute=require("./Routes/CertificateRoute")
 const ProjectRoute=require("./Routes/ProjectRoute")

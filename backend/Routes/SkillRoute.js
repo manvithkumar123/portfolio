@@ -2,16 +2,9 @@ const express = require('express');
 const router = express.Router();
 const skillmodel = require("../DBmodules/Skill");
 
-function isAuthenticated(req, res, next) {
-  if (req.session && req.session.user) {
-    next();
-  } else {
-    res.status(401).send("Unauthorized");
-  }
-}
 
 // POST route
-router.post("/Dashboard/skill", isAuthenticated, async (req, res) => {
+router.post("/Dashboard/skill", async (req, res) => {
     const { skillname, skillDescription ,skilllogo} = req.body;
     console.log("Received form data:", req.body); // ✅ show in terminal
 
@@ -27,7 +20,7 @@ router.post("/Dashboard/skill", isAuthenticated, async (req, res) => {
 
     }
 });
-router.post("/Dashboard/skill/delete", isAuthenticated, async (req, res) => {
+router.post("/Dashboard/skill/delete", async (req, res) => {
     const { skillid } = req.body;
     try {
         await skillmodel.findByIdAndDelete(skillid);
@@ -38,7 +31,7 @@ router.post("/Dashboard/skill/delete", isAuthenticated, async (req, res) => {
     }
 });
 
-router.post("/Dashboard/skill/edit", isAuthenticated, async (req, res) => {
+router.post("/Dashboard/skill/edit", async (req, res) => {
     const { skillid, skillname, skillDescription } = req.body;
 
     try {
