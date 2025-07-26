@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb://localhost:27017/portfolio`)
+mongoose.connect(process.env.MONGO_URL)
 
 const skillSchema = new mongoose.Schema({
     skillname: String,

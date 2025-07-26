@@ -19,10 +19,15 @@ router.post("/Dashboard/certificate", upload.array("imageurl", 5), async (req, r
   res.send("Certificate saved successfully!");
 });
 
-router.get("/certificates",async(req,res)=>{
+router.get("/certificates", async (req, res) => {
+  try {
     const certificates = await certificatemodel.find();
-    res.send(certificates)
-})
+    res.send(certificates);
+  } catch (err) {
+    console.error("Error fetching certificates:", err.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
 router.post("/Dashboard/certificate/delete", async (req, res) => {
   const { certificateid } = req.body;
 
