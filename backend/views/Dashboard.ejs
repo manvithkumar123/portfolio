@@ -157,20 +157,7 @@
 </div>
 <div class="contactpage" style="display: none;height: 100vh;width: 100vw;background-color: #1a1c1c;justify-content: center;align-items: center;">
     <div style="background-color: #262a2d; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; width: 400px;">
-        <% if (messages && messages.length > 0) { %>
-          <% messages.forEach(contact => { %>
-            <form action="/api/contact/delete" method="post" style="color: white; margin-bottom: 10px;">
-              <input type="hidden" name="id" value="<%= contact._id %>">
-              <p><strong>Name:</strong> <%= contact.name %></p>
-              <p><strong>Message:</strong> <%= contact.message %></p>
-              <p><strong>Contact:</strong> <%= contact.contact %></p>
-              <button type="submit" style="background-color: red; color: white; border: none; padding: 5px 10px; border-radius: 4px;">Delete</button>
-              <hr style="border: 0.5px solid gray;" />
-            </form>
-          <% }); %>
-        <% } else { %>
-          <p style="color: gray;">No contact messages available.</p>
-        <% } %>
+        <p style="color: gray;">Contact section removed.</p>
     </div>
   </div>
 <script src="/scripts/Dashboard.js"></script>

@@ -23,16 +23,6 @@ router.get('/contact', async (req, res) => {
     res.status(500).json({ error: "Failed to fetch messages" });
   }
 });
-router.get("/Dashboard", async (req, res) => {
-  try {
-    const messages = await Contactdata.find().sort({ createdAt: -1 });
-    console.log("Dashboard route hit. Messages found:", messages.length);
-    res.render("Dashboard", { messages: messages || [] });
-  } catch (err) {
-    console.error("Dashboard load error:", err);
-    res.status(500).send("Failed to load dashboard");
-  }
-});
 router.post("/contact/delete", async (req, res) => {
   try {
     await Contactdata.findByIdAndDelete(req.body.id);
