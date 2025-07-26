@@ -31,11 +31,9 @@ router.post("/Dashboard/project", upload.array("projectimage", 10), async (req, 
       return res.status(400).send("No images uploaded. Make sure the field name is 'projectimage'.");
     }
 
-    const images = req.files.map(file => ({
-        data: fs.readFileSync(path.join(__dirname, '..', 'public', 'Images', 'Projects', file.filename)),
-        contentType: file.mimetype
-    }));
+    const images = req.files.map(file => file.filename);
 
+    // Ensure only filenames are stored for projectimage
     let newproject = new projectmodel({
         projectname,
         projectsubtitle,
@@ -43,7 +41,7 @@ router.post("/Dashboard/project", upload.array("projectimage", 10), async (req, 
         giturl,
         bordercolour,
         gradientcolour,
-        projectimage: images
+        projectimage: images // filenames only
     });
 
     await newproject.save();
