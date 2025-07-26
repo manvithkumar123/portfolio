@@ -60,7 +60,7 @@ router.post("/Dashboard/certificate/edit", upload.array("imageurl", 5), async (r
 
   try {
     await certificatemodel.findByIdAndUpdate(certificateid, updateFields);
-    res.redirect("/api/Dashboard");
+    res.status(200).json({ success: true, message: "Certificate updated successfully" });
   } catch (err) {
     console.error("Error updating certificate:", err.message);
     res.status(500).send("Error updating certificate");
