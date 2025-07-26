@@ -4,8 +4,175 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/Stylesheet/Stylesheet.css">
 </head>
-<body>
-    <h2>helllowowwj</h2>
+<body style="display: flex;">
+    <div class="Menubar" style="height: 100vh;width:20%;background-color: #262a2d;display: flex;flex-direction: column;;padding-left: 10px;position: relative;flex-wrap: wrap;">
+        <h3 style="color: #a0a8af;margin-top: 50px;">Welcome Manvith,</h3>
+        <h4 style="margin-top: 10px;color: #a0a8af;margin-left: 9px;">What Would You Like To Edit</h4>
+    <div class="options" style="display: flex;" >
+        <div class="button_container" style="display: flex;flex-direction: column;margin-top: 100px;margin-left: 30px;">
+            <button id="showskill">SKILLS</button>
+            <button id="showcertificate">CERTIFICATES</button>
+            <button id="showproject">PROJECTS</button>
+            <button id="showcontact">CONTACT DETAIL</button>
+        </div>
+    </div>
+    <button id="logout" style="position: absolute;bottom: 50px;height: 30px;right: 20px;border: none;background-color: transparent;padding: 10px;color: #a0a8af;">LOG-OUT</button>
+</div>
+    </div>
+    <div class="Skillpage" id="skillpage" style="height: 100vh;width:100vw;background-color: #1a1c1c;display: flex;align-items: center;justify-content: center;">
+        <div class="container" style="height: 90%;width: 90%;">
+            <div class="item"  style="background-color: #262a2d;"><div id="clock" style="color: white; font-size: 60px; padding: 10px;display: flex;align-items: center;justify-content: center;font-weight: bolder;"></div>
+
+            <script>
+              function updateClock() {
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString(); // format: HH:MM:SS AM/PM
+                document.getElementById("clock").innerText = timeStr;
+              }
+            
+              setInterval(updateClock, 1000); // update every second
+              updateClock(); // initial call
+            </script></div>
+            <div class="item" style="background-color: #262a2d;">    
+                <form action="/api/Dashboard/skill/edit" method="post" id="EditSection" style="background-color: #262a2d;height: max-content;width: 250px;display: flex;flex-direction: column;align-items: center;justify-content: center;margin: 10px;border-radius: 10px;padding: 20px;">
+                <h1 style="color: white;">Edit Skill</h1>
+                <input type="text" name="skillid" placeholder="Skill ID" style="width: 250px;height: 30px;margin-bottom: 10px;margin-top: 20px;" required>
+                <input type="text" name="skillname" placeholder="New Skill Name " style="width: 250px;height: 30px;margin-bottom: 10px;" >
+                <textarea name="skillDescription" placeholder="New Description" style="width: 250px;min-height: 100px;margin-bottom: 10px;resize: none;height: 200px;" ></textarea>
+                <button type="submit" style="height: 30px;width: 100px;">Update</button>
+            </form></div>
+            <div class="item" style="background-color: #262a2d;display: flex;justify-content: center;align-items: center;">    
+                <form action="/api/Dashboard/skill/delete" id="delete" method="post" style="width: 100%;display: flex;align-items: center;justify-content: center;margin: 10px;border-radius: 10px;">
+                <h2 style="color: white;width:max-content;">Delete skill </h2>
+                <input type="text" name="skillid" placeholder="Skillid" style="width: 250px;height: 30px;outline: none;margin-left: 30px;" required>
+                    <button style="height: 30px;width: 100px;margin-left: 30px;">Submit</button>
+            </form>
+        </div>
+            <div class="item" style="background-color: #262a2d;display: flex;justify-content: center;align-items: center;">   
+                 <form action="/api/Dashboard/skill" id="addskill" method="post" style="background-color: #262a2d;height: max-content;width: 550px;display: flex;flex-direction: column;align-items: center;justify-content: center;overflow: hidden;padding-bottom: 10px;border-radius: 10px;">
+                <h1 style="color: white;">Add Skills here</h1>
+                <input type="text" name="skillname" placeholder="Skillname" style="width: 250px;height: 30px;outline: none;margin-top: 10px;margin-top: 5px;" required>
+                <input type="text" name="skilllogo"  placeholder="skill logo url" style="width: 250px;height: 30px;outline: none;margin-top: 5px;" required>
+                <textarea name="skillDescription" placeholder="Skill Description" style="min-height: 173px; margin-top: 20px;width: 400px;outline: none;margin-top: 5px; padding: 10px 10px 10px 10px; resize: none;" required></textarea>
+                <div style="margin-top: 20px;display: flex;">
+                <button style="height: 30px;width: 100px;">Submit</button>
+                <a href="/api/skills"><button type="button" style="height: 30px;width: 100px;margin-left: 20px;">view skills</button></a>
+            </div>
+            </form>
+        </div>
+          </div>
+    </div>
+
+<div class="certificatepage" style="display: flex;height: 100vh;width: 100vw;background-color: #1a1c1c;display: none;justify-content: center;align-items: center;">
+    <div class="container" style="height: 90%;width: 90%;">
+    <div class="item"   style="background-color: #262a2d;display: flex;justify-content: center;align-items: center;"><h1 style="color: white;">Certificates</h1></div>
+    <div class="item"  style="background-color: #262a2d;"> 
+        <form action="/api/Dashboard/certificate/edit" method="post" style="background-color: #262a2d;height: 95%;width: 100%;display: flex;flex-direction: column;align-items: center;justify-content: center;overflow: hidden;padding-bottom: 10px;border-radius: 10px;">
+            <h1 style="color: white;">Edit Certificates</h1>
+            <input type="text" name="certificateid" placeholder="Certificate id" style="width: 250px;height: 30px;outline: none;" required>
+            <input type="text" name="captiontext" placeholder="Certificate Name" style="width: 250px;height: 30px;outline: none;" required>
+            <input name="hovertext" placeholder="Certificate Hover text" style="width: 250px;height: 30px;outline: none;"required>
+            <div style="margin-top: 10px;display: flex;" id="cerficatecoloum">
+            <button style="height: 40px;width: 100px;">Submit</button>
+            <a href="/api/certificates"><button type="button" style="height: 40px;width: 100px;margin-left: 20px;">view Certificate</button></a>
+            </div>
+            </form>
+    </div>
+    <div class="item"  style="background-color: red;border-radius: 10px;">
+        <div style="display: flex;height: 100%;width: 100%;">
+        <form action="/api/Dashboard/certificate/delete" method="post" style="background-color: #262a2d;height: 100%;width: 90%;display: flex;align-items: center;justify-content: center;">
+            <h2 style="color: white;">Delete Certificate </h2>
+            <input type="text" name="certificateid" placeholder="certificateid" style="width: 250px;height: 30px;outline: none;margin-left: 10px;">
+                <button style="height: 30px;width: 100px; margin-left: 30px;">Submit</button>
+        </form>
+        <form action="/api/Dashboard/certificate/delete/all" method="post" style="background-color: #262a2d;height: 100%;justify-content: center;align-items: center;display: flex;">
+            <button type="submit" style="background-color: red;border: none;box-shadow: 0 0 1rem red;margin-left: 10px;height: max-content;padding: 10px;">Delete All Certificate</button>
+          </form>
+        </div>
+    </div>
+    <div class="item"  style="background-color: #262a2d;display: flex;align-items: center;justify-content: center;">
+        <form action="/api/Dashboard/certificate" method="post" enctype="multipart/form-data" style="background-color: #262a2d;height: max-content;width: 550px;display: flex;flex-direction: column;align-items: center;justify-content: center;overflow: hidden;padding-bottom: 10px;border-radius: 10px;margin-top: 10px;">
+        <h1 style="color: white;">Add Certificates here</h1>
+        <input type="text" name="captiontext" placeholder="Certificate Name" style="width: 250px;height: 30px;outline: none;" required>
+        <input type="file" name="imageurl" multiple accept="image/*" style="width: 250px;height: 30px;outline: none;" required>
+        <input name="hovertext" placeholder="Certificate Hover text" style="width: 250px;height: 30px;outline: none;"required>
+        <div style="margin-top: 10px;display: flex;" id="cerficatecoloum">
+        <button style="height: 40px;width: 100px;">Submit</button>
+        <a href="/api/certificates"><button type="button" style="height: 40px;width: 100px;margin-left: 20px;">view Certificate</button></a>
+        </div>
+        </form></div>
+    </div>
+</div>
+
+<div class="Projectpage" style="display: flex;height: 100vh;width: 100vw;background-color: #1a1c1c;display: none;justify-content: center;align-items: center;">
+    <div class="container"  style="height: 90%;width: 90%;">
+        <div class="item" style="background-color: #262a2d;color: red;display: flex;justify-content: center;align-items: center;"><h1 style="color: white;">Projects</h1></div>
+        <div class="item" style="background-color: #262a2d;color: red; display: flex;justify-content: center;align-items: center;">
+            <form action="/api/Dashboard/project/edit" method="post" id="EditSection" enctype="multipart/form-data" style="background-color: #262a2d;height: max-content;width: 250px;display: flex;flex-direction: column;align-items: center;justify-content: center;margin: 10px;border-radius: 10px;padding: 20px;">
+            <h1 style="color: white;">Edit project</h1>
+            <input type="text" name="projectid" placeholder="Project ID" style="width: 250px;height: 30px;margin-bottom: 10px;margin-top: 20px;" required>
+            <input type="text" name="projectname" placeholder="New project Name " style="width: 250px;height: 30px;margin-bottom: 10px;" >
+            <input name="projectsubtitle" placeholder="New subtitile" style="width: 250px;height: 30px;margin-bottom: 10px;">
+            <input name="toolsuse" placeholder="New Tool" style="width: 250px;height: 30px;margin-bottom: 10px;">
+            <input name="giturl" placeholder="New Link" style="width: 250px;height: 30px;margin-bottom: 10px;">
+            <input type="file" name="projectimage" accept="image/*" multiple style="width: 250px;height: 30px;margin-bottom: 10px;">
+            <button type="submit" style="height: 30px;width: 100px;">Update</button>
+            </form>
+        </div>
+        <div class="item" style="background-color: #262a2d;color: red;display: flex;align-items: center;justify-content: center;">
+            <form action="/api/Dashboard/project/delete" id="delete" method="post" style="width:max-content;display: flex;align-items: center;justify-content: center;border-radius: 10px;align-items: center;">
+                <h2 style="color: white;width:max-content;">Delete Projects</h2>
+                <input type="text" name="projectid" placeholder="Skillid" style="width: 250px;height: 30px;outline: none;margin-left: 30px;">
+                    <button style="height: 30px;width: 100px;margin-left: 30px;">Submit</button>
+            </form>
+            <form action="/api/Dashboard/project/delete/all" method="post">
+                <button type="submit" style="background-color: red;border: none;box-shadow: 0 0 1rem red;margin-left: 10px;height: max-content;padding: 10px;border-radius: 5px;">Delete All Projects</button>
+              </form>
+        </div>
+        <div class="item" style="background-color: #262a2d;display: flex;justify-content: center;align-items: center;">
+            <form action="/api/Dashboard/project" id="addproject" method="post" enctype="multipart/form-data" style="background-color: #262a2d;height: max-content;width: 550px;display: flex;flex-direction: column;align-items: center;justify-content: center;overflow: hidden;padding-bottom: 10px;border-radius: 10px;">
+               <h1 style="color: white;">Add Projects here</h1>
+               <input type="text" name="projectname" placeholder="Project name" style="width: 250px;height: 30px;outline: none;margin-top: 10px;margin-top: 5px;" required>
+               <input type="file" name="projectimage" multiple accept="image/*" style="width: 250px;height: 30px;outline: none;" required>
+               <input type="text" name="projectsubtitle"  placeholder="Subtitle" style="width: 250px;height: 30px;outline: none;margin-top: 5px;" >
+               <input type="text" name="toolsuse"  placeholder="Tool used" style="width: 250px;height: 30px;outline: none;margin-top: 5px;" required>
+               <input type="text" name="giturl"  placeholder="Project Url" style="width: 250px;height: 30px;outline: none;margin-top: 5px;" >
+               <div style="display: flex;">
+               <h4 style="margin-top: 10px;color: white;">Border colour</h4>
+               <input type="color" name="bordercolour" placeholder="bordercolour" style="border: none;">
+            </div>
+               <div style="display: flex;">
+               <h4 style="margin-top: 10px;color: white;">Gradient colour</h4>
+               <input type="color" name="gradientcolour"  style="border: none;">
+            </div>
+               <div style="margin-top: 20px;display: flex;"> 
+               <button style="height: 30px;width: 100px;">Submit</button>
+               <a href="/api/project"><button type="button" style="height: 30px;width: 100px;margin-left: 20px;">view Projects</button></a>
+                </div>
+           </form>
+        </div>
+    </div>
+</div>
+<div class="contactpage" style="display: none;height: 100vh;width: 100vw;background-color: #1a1c1c;justify-content: center;align-items: center;">
+    <div style="background-color: #262a2d; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; width: 400px;">
+        <% if (contactschema && contactschema.length > 0) { %>
+          <% contactschema.forEach(contact => { %>
+            <form action="/api/contact/delete" method="post" style="color: white; margin-bottom: 10px;">
+              <input type="hidden" name="id" value="<%= contact._id %>">
+              <p><strong>Name:</strong> <%= contact.name %></p>
+              <p><strong>Message:</strong> <%= contact.message %></p>
+              <p><strong>Contact:</strong> <%= contact.contact %></p>
+              <button type="submit" style="background-color: red; color: white; border: none; padding: 5px 10px; border-radius: 4px;">Delete</button>
+              <hr style="border: 0.5px solid gray;" />
+            </form>
+          <% }); %>
+        <% } else { %>
+          <p style="color: gray;">No contact messages available.</p>
+        <% } %>
+    </div>
+  </div>
+<script src="/scripts/Dashboard.js"></script>
 </body>
 </html>

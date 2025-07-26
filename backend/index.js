@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
@@ -20,7 +21,7 @@ app.use("/api",ProjectRoute);
 app.use("/api",contactroute);
 
 app.get("/", (req, res) => {
-  res.send("API is working. Try /api/skills or other routes.");
+  res.render("Dashboard")
 });
 
 const PORT = process.env.PORT || 5050;

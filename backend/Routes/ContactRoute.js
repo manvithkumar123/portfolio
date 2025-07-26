@@ -26,7 +26,8 @@ router.get('/contact', async (req, res) => {
 router.get("/Dashboard", async (req, res) => {
   try {
     const messages = await Contactdata.find().sort({ createdAt: -1 });
-    res.render("Dashboard", { contactschema: messages });
+    console.log("Dashboard route hit. Messages found:", messages.length);
+    res.render("Dashboard", { contactschema: messages || [] });
   } catch (err) {
     console.error("Dashboard load error:", err);
     res.status(500).send("Failed to load dashboard");
