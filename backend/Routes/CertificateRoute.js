@@ -5,18 +5,28 @@ const multer = require('multer');
 const upload = require('../utils/multer');
 const { route } = require('./ProjectRoute');
 router.post("/Dashboard/certificate", upload.array("imageurl", 5), async (req, res) => {
-  let { captiontext, hovertext } = req.body;
-  const imageFilenames = req.files.map(file => file.filename);
-  const hoverTextArray = Array.isArray(hovertext) ? hovertext : [hovertext];
+  try {
+    let { captiontext, hovertext } = req.body;
 
-  let newcertificate = new certificatemodel({
-    imageurl: imageFilenames,
-    captiontext,
-    hovertext: hoverTextArray
-  });
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ error: "No images uploaded" });
+    }
 
-  await newcertificate.save();
-  res.send("Certificate saved successfully!");
+    const imageFilenames = req.files.map(file => file.filename);
+    const hoverTextArray = Array.isArray(hovertext) ? hovertext : [hovertext];
+
+    let newcertificate = new certificatemodel({
+      imageurl: imageFilenames,
+      captiontext,
+      hovertext: hoverTextArray
+    });
+
+    await newcertificate.save();
+    res.send("Certificate saved successfully!");
+  } catch (err) {
+    console.error("Error in /Dashboard/certificate:", err.message);
+    res.status(500).json({ error: "Server error while saving certificate" });
+  }
 });
 
 router.get("/certificates", async (req, res) => {
