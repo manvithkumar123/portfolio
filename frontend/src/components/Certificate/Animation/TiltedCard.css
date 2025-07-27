@@ -30,8 +30,11 @@
   .tilted-card-inner {
     position: relative;
     transform-style: preserve-3d;
-    height: 500px !important;
-    width: 500px !important;
+    height: 300px !important;
+    width: 300px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .tilted-card-img {
