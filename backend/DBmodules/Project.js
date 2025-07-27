@@ -5,7 +5,7 @@ const ProjectSchema = new mongoose.Schema({
   projectsubtitle: String,
   toolsuse: String,
   gradientcolour: String,
-  bordercolour: String,
+  bordercolour:     String,   
   giturl: String
 });
 
