@@ -5,8 +5,8 @@ import ProfileCard from './Animations/ProfileCard'
   
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
+  const [formData,   setFormData] = useState({
+    name: '',   
     message: '',
     contact: ''
   });
