@@ -12,7 +12,7 @@ router.post("/Dashboard/certificate", upload.array("imageurl", 5), async (req, r
       return res.status(400).json({ error: "No images uploaded" });
     }
 
-    const imageFilenames = req.files.map(file => file.filename);
+    const imageFilenames = req.files.map(file => `Images/Certificates/${file.filename}`);
     const hoverTextArray = Array.isArray(hovertext) ? hovertext : [hovertext];
 
     let newcertificate = new certificatemodel({
@@ -62,7 +62,7 @@ router.post("/Dashboard/certificate/edit", upload.array("imageurl", 5), async (r
   const updateFields = {};
   if (captiontext) updateFields.captiontext = captiontext;
   if (req.files && req.files.length > 0) {
-    updateFields.imageurl = req.files.map(file => file.filename);
+    updateFields.imageurl = req.files.map(file => `Images/Certificates/${file.filename}`);
   }
   if (hovertext) {
     updateFields.hovertext = Array.isArray(hovertext) ? hovertext : [hovertext];

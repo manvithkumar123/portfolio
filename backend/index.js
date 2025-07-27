@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
-app.use('/Images/Certificates', express.static(path.join(__dirname, 'public/Images/Certificates')));
+app.use('/certificates', express.static(path.join(__dirname, 'public/Images/Certificates')));
 app.use('/Images/Projects', express.static(path.join(__dirname, 'public', 'Images', 'Projects')));
 app.use("/api", SkillRoute);
 app.use("/api",CertificateRoute);
